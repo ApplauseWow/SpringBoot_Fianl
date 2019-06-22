@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="description" content="Login - Register Template">
+    <meta name="author" content="Lorenzo Angelino aka MrLolok">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{css/main.css}">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F2F2F2;
+        }
+    </style>
+    <script th:src="@{js/jquery.min.js}"></script>
+</head>
+
+<body>
+    <div id="container-login">
+        <div id="title">
+            <i class="material-icons lock">lock</i> Login
+        </div>
+
+        <form action="/user/checkInfo" method="post">
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">face</i>
+                </div>
+                <input name="username" id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input name="password" id="password" placeholder="Password" type="password" required class="validate" autocomplete="off">
+            </div>
+            <span id="msg" style="position: absolute;margin-top: 3px;margin-right: 15px; color: red;font-size: 5px;" th:if="${session.msg != null}"
+                  th:text="${session.msg}"></span>
+            <script>
+                $("#username").focus(function () {
+                    // $("#msg").hide(1000);
+                    $("#msg").fadeOut("fast")
+                });
+            </script>
+            <div class="remember-me">
+                <br>
+            </div>
+
+            <input type="submit" value="Log In" />
+        </form>
+
+
+        <div class="register">
+            <span style="color: #657575">Don't have an account yet?</span>
+            <a href="/register"><button id="register-link">Register here</button></a>
+        </div>
+
+    </div>
+</body>
+
+</html>

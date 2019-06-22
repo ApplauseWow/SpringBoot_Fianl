@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Class-Path: spring-boot-starter-2.1.6.RELEASE.jar mybatis-spring-2.0.0
+ .jar spring-jdbc-5.1.8.RELEASE.jar spring-boot-autoconfigure-2.1.6.RE
+ LEASE.jar spring-tx-5.1.8.RELEASE.jar spring-boot-starter-web-2.1.6.R
+ ELEASE.jar spring-core-5.1.8.RELEASE.jar mybatis-3.5.0.jar mybatis-sp
+ ring-boot-starter-2.0.0.jar spring-beans-5.1.8.RELEASE.jar logback-cl
+ assic-1.2.3.jar thymeleaf-spring5-3.0.11.RELEASE.jar HikariCP-3.2.0.j
+ ar jackson-datatype-jsr310-2.9.9.jar spring-boot-devtools-2.1.6.RELEA
+ SE.jar spring-context-5.1.8.RELEASE.jar log4j-api-2.11.2.jar spring-b
+ oot-starter-tomcat-2.1.6.RELEASE.jar jackson-databind-2.9.9.jar sprin
+ g-expression-5.1.8.RELEASE.jar tomcat-embed-el-9.0.21.jar mysql-conne
+ ctor-java-5.1.6.jar jul-to-slf4j-1.7.26.jar jboss-logging-3.3.2.Final
+ .jar thymeleaf-extras-java8time-3.0.4.RELEASE.jar slf4j-api-1.7.26.ja
+ r lombok-1.18.8.jar jackson-core-2.9.9.jar tomcat-embed-core-9.0.21.j
+ ar spring-boot-2.1.6.RELEASE.jar jackson-annotations-2.9.0.jar spring
+ -boot-starter-jdbc-2.1.6.RELEASE.jar jackson-module-parameter-names-2
+ .9.9.jar spring-boot-starter-thymeleaf-2.1.6.RELEASE.jar spring-boot-
+ starter-logging-2.1.6.RELEASE.jar spring-aop-5.1.8.RELEASE.jar valida
+ tion-api-2.0.1.Final.jar javax.annotation-api-1.3.2.jar classmate-1.4
+ .0.jar snakeyaml-1.23.jar hibernate-validator-6.0.17.Final.jar spring
+ -boot-starter-json-2.1.6.RELEASE.jar spring-webmvc-5.1.8.RELEASE.jar 
+ log4j-to-slf4j-2.11.2.jar spring-jcl-5.1.8.RELEASE.jar tomcat-embed-w
+ ebsocket-9.0.21.jar jackson-datatype-jdk8-2.9.9.jar attoparser-2.0.5.
+ RELEASE.jar spring-web-5.1.8.RELEASE.jar thymeleaf-3.0.11.RELEASE.jar
+  unbescape-1.1.6.RELEASE.jar mybatis-spring-boot-autoconfigure-2.0.0.
+ jar logback-core-1.2.3.jar
+Main-Class: cn.applausewow.spring_final.SpringFinalApplication
+
