@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserDao userDao;
+	private final UserDao userDao;
+
+	public UserServiceImpl(UserDao userDao) {
+		this.userDao = userDao;
+	}
 
 	@Override
 	public List<User> getAllUsers() {
@@ -25,5 +28,22 @@ public class UserServiceImpl implements UserService {
 		User user = userDao.getUserByUserName(username);
 		if(user == null) return false;
 		else return password.equals(user.getPasswd());
+	}
+
+	@Override
+	public User showUserByUserName(String username) {
+		return userDao.getUserByUserName(username);
+	}
+
+	@Override
+	public Boolean Register(User user) {
+		int row = userDao.insertUser(user);
+		return row == 1;
+	}
+
+	@Override
+	public Boolean existUser(String username) {
+		User user = userDao.getUserByUserName(username);
+		return user != null;
 	}
 }

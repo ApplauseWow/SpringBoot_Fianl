@@ -3,4 +3,6 @@
 <mapper namespace="cn.applausewow.spring_final.dao.UserDao">
     <select id="getAllUsers" resultType="User">select * from users;</select>
     <select id="getUserByUserName" resultType="User">select * from users where user_name = #{user_name, jdbcType=VARCHAR};</select>
+    <insert id="insertUser" parameterType="User">insert into users (user_name, passwd, name, job, location) values (#{user_name}, #{passwd}, #{name}, #{job}, #{location})</insert>
+
 </mapper>

@@ -12,9 +12,7 @@ public class CommonController {
     public String logIn(){return "login";}
 
     //重定向注册界面
-    @RequestMapping("/register")
+    @RequestMapping("/signIn")
     public String register(){return "register";}
 
-    @RequestMapping("/index")
-    public String index(){return "index";}
 }

@@ -34,7 +34,7 @@ public class UserController {
 	public String checkUserInfo(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, HttpSession httpSession) {
 		if (userService.checkUserInfo(username, password)) {
 			//验证正确，进入首页
-			httpSession.setAttribute("username", username);
+			httpSession.setAttribute("user", userService.showUserByUserName(username));
 			return "index";
 		} else {
 			//验证失败，跳转至登录界面
@@ -44,5 +44,37 @@ public class UserController {
 
 	}
 
+	@RequestMapping("/register")
+	public String register(HttpSession httpSession ,@RequestParam(value = "username")String username, @RequestParam(value = "name")String name, @RequestParam(value = "location")String location, @RequestParam(value = "password")String password, @RequestParam(value = "job")String job){
+		if (!userService.existUser(username)){
+			User user = new User();
+			user.setUser_name(username);
+			user.setPasswd(password);
+			user.setJob(job);
+			user.setLocation(location);
+			user.setName(name);
+			if(userService.Register(user)){
+				user = userService.showUserByUserName(username);
+				httpSession.setAttribute("user", user);
+				return "index";
+			}else {
+				httpSession.setAttribute("msg", "注册失败重新注册");
+				return "register";
+			}
+
+		}else {
+			System.out.println("fail to register!");
+			httpSession.setAttribute("msg", "用户名已存在");
+			return "register";
+		}
+
+	}
+
+	@RequestMapping("/showUserByUserName")
+	public Map<String, User> showUserByUserName(@RequestParam(value = "") String username){
+		Map<String, User> map = new HashMap<>();
+		map.put("user", userService.showUserByUserName(username));
+		return map;
+	}
 
 }

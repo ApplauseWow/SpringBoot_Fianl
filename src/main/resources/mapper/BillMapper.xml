@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.applausewow.spring_final.dao.BillDao">
+    <insert id="insertBill" parameterType="Bill" >
+        insert into bills (user_id,cost, cost_date, cost_type, note)
+        values(#{user_id}, #{cost}, #{cost_date}, #{cost_type}, #{note});
+    </insert>
+    <select id="getBillsById" resultType="Bill">
+        select * from bills where user_id = #{user_id} order by cost_date;
+    </select>
+    <select id="getBillPercentage" resultType="BillTypeCount">
+        select t1.type_id, t1.type_name, t2.num
+        FROM
+        (select * from types) as t1
+        inner join
+        (SELECT cost_type,count(*) num FROM bills where user_id = #{user_id} GROUP BY cost_type) as t2 on t1.type_id = t2.cost_type
+        order by t1.type_id;
+    </select>
+</mapper>

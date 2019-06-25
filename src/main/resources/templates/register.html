@@ -13,6 +13,7 @@
             background-color: #F2F2F2;
         }
     </style>
+    <script th:src="@{js/jquery.min.js}"></script>
 </head>
 
 <body>
@@ -22,12 +23,29 @@
             <i class="material-icons lock">lock</i> Register
         </div>
 
-        <form>
+        <form id="re_form" action="/user/register" method="post">
+
             <div class="input">
                 <div class="input-addon">
-                    <i class="material-icons">email</i>
+                    <i class="material-icons">face</i>
                 </div>
                 <input name="name" id="name" placeholder="Name" type="text" required class="validate" autocomplete="off">
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input name="location" id="location" placeholder="Location" type="text" required class="validate" autocomplete="off">
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input name="job" id="job" placeholder="Job" type="text" required class="validate" autocomplete="off">
             </div>
 
             <div class="clearfix"></div>
@@ -36,7 +54,7 @@
                 <div class="input-addon">
                     <i class="material-icons">face</i>
                 </div>
-                <input id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
+                <input name="username" id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
             </div>
 
             <div class="clearfix"></div>
@@ -47,9 +65,12 @@
                 </div>
                 <input name="password" id="password" placeholder="Password" type="password" required class="validate" autocomplete="off">
             </div>
+            <span id="msg" style="position: absolute;margin-top: 3px;margin-right: 15px; color: red;font-size: 5px;"
+                  th:if="${session.msg != null}"
+                  th:text="${session.msg}"></span>
 
             <br>
-            <input type="submit" value="Register" />
+            <input id="register" type="submit" value="Register" />
         </form>
 
 
@@ -59,5 +80,21 @@
         </div>
     </div>
 </body>
+<script>
+    $("#username").focus(function () {
+        // $("#msg").hide(1000);
+        $("#msg").fadeOut("fast")
+    });
 
+    // $("#form").submit(function () {
+    //     return false;
+    // });
+    // $("#register").click(function () {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/user/register",
+    //         data: {"username" :$("#username").val(), "name": $("#name"), "password": $("#password"), "job": $("#job"), "location": $("#location")}
+    //     })
+    // })
+</script>
 </html>
