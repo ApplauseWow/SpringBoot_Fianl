@@ -4,10 +4,12 @@ package cn.applausewow.spring_final.controller;
 import cn.applausewow.spring_final.bean.User;
 import cn.applausewow.spring_final.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +70,19 @@ public class UserController {
 			return "register";
 		}
 
+	}
+
+	@ResponseBody
+	@RequestMapping("/modifySelf")
+	public Boolean modifySelfInfo(HttpServletRequest httpServletRequest, @RequestParam(value = "userId")Integer user_id , @RequestParam(value = "name")String name , @RequestParam(value = "username")String username, @RequestParam(value = "password")String password, @RequestParam(value = "job")String job, @RequestParam(value = "location")String location){
+		User user = new User();
+		user.setUser_id(user_id);
+		user.setUser_name(username);
+		user.setPasswd(password);
+		user.setName(name);
+		user.setJob(job);
+		user.setLocation(location);
+		return userService.modifySelfInfo(user);
 	}
 
 	@RequestMapping("/showUserByUserName")

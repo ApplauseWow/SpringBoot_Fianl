@@ -48,9 +48,9 @@ private UserService service;
         user.setName("app");
         user.setUser_name("app");
         user.setLocation("上海");
-        user.setJob("大数据分析师");
+        user.setJob("架构师");
         user.setPasswd("123");
-        boolean b = service.existUser("holy");
+        boolean b = service.modifySelfInfo(user);
         if (b){
             System.out.println("ok");
         }else {

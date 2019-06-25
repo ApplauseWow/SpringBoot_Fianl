@@ -12,4 +12,5 @@ public interface UserService {
 	public User showUserByUserName(String username);
 	public Boolean existUser(String username);
 	public Boolean Register(User user);
+	public Boolean modifySelfInfo(User user);
 }

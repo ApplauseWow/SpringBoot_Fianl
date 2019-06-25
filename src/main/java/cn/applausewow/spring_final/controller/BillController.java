@@ -36,7 +36,12 @@ public class BillController {
         bill.setCost_date(date);
         bill.setCost_type(cost_type);
         bill.setNote(note);
-        Integer row =  billService.addNewBill(bill);
+        Integer row = 0;
+        try {
+            row =  billService.addNewBill(bill);
+        }catch (Exception e){
+            row = 0;
+        }
         return row == 1;
     }
 

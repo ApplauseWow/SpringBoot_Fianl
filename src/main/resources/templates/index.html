@@ -41,10 +41,6 @@
         <script th:src="@{../js/jquery.stellar.min.js}"></script>
         <!-- Easy PieChart -->
         <script th:src="@{../js/jquery.easypiechart.min.js}"></script>
-        <!-- Google Map -->
-
-        <script th:src="@{../js/google_map.js}"></script>
-
 
         <!-- Main -->
         <script th:src="@{../js/main.js}"></script>
@@ -59,7 +55,7 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t js-fullheight">
 						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-							<div class="profile-thumb" style="background: url(../images/user-3.jpg)"></div>
+							<div onclick="" class="profile-thumb" style="background: url(../images/user-3.jpg)"></div>
 							<!--用户名-->
 							<h1><span th:text="${session.user.getName()}">User Name</span></h1>
 							<h3><span id="detail" th:text="${session.user.getJob()}">Job / Location</span> / <span th:text="${session.user.getLocation()}"></span></h3>
@@ -113,9 +109,64 @@
 					<button id="addBill"  class="btn btn-primary">Add New Bill</button>
 				</div>
 
+                <div class="form-group">
+                    <button id="modifySelf"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Modify Self Info</button>
+                </div>
+
 			</form>
 		</div>
 	</div>
+
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modify Self Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--中间主要内容-->
+
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <input th:value="${session.user.getUser_id()}" name='userId' id="userId" type="hidden"  class="form-control" placeholder="userId">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <input th:value="${session.user.getUser_name()}" name='username' type="hidden" id="username" class="form-control" placeholder="username">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    PassWord: <input th:value="${session.user.getPasswd()}" name='password' type="password" id="password" class="form-control" placeholder="password">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    Name: <input th:value="${session.user.getName()}" name='name' type="text" id="name" class="form-control" placeholder="name">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    Job: <input th:value="${session.user.getJob()}" name='job' type="text" id="job" class="form-control" placeholder="job">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    Location: <input th:value="${session.user.getLocation()}" name='location' type="text" id="location" class="form-control" placeholder="location">
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="modify" class="btn btn-primary">Modify</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
 
 	<!--详细账单图-->
 	<div id="fh5co-resume" class="fh5co-bg-color">
@@ -163,10 +214,6 @@
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
 
-	<div class="gototop2 js-top">
-		<a href="/login" class="js-gotop"><i class="icon-arrow-right22"></i></a>
-	</div>
-	
 
 
 	</body>
@@ -176,6 +223,35 @@
 
 		$("#form").submit(function () {
 			return false;
+		});
+		$("#self_form").submit(function () {
+			return false;
+		});
+		$("#modify").click(function () {
+			// alert($("#self_form").serialize());
+			$.ajax({
+				type: "POST",
+				url: "/user/modifySelf",
+				data: {
+					"userId": $("#userId").val(),
+					"username": $("#username").val(),
+					"password": $("#password").val(),
+					"name": $("#name").val(),
+					"job": $("#job").val(),
+					"location": $("#location").val()
+				},
+				async: false,
+				success:function (result) {
+					if (result){
+						$("#myModal").modal("hide");
+						var username = $("#username").val();
+						var passwd = $("#password").val();
+						window.location.href="/user/checkInfo?username="+username+"&password="+passwd;
+					} else {
+						alert("修改失败！");
+					}
+				}
+			});
 		});
 		$("#addBill").click(function () {
 			$.ajax({
@@ -352,7 +428,7 @@
 					$("#percentage_bar").html(html_);
 				}
 			})
-		};
+		}
 		$(document).ready(refresh());
     </script>
 </html>

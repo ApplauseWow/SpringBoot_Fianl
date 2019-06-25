@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService {
 		User user = userDao.getUserByUserName(username);
 		return user != null;
 	}
+
+	@Override
+	public Boolean modifySelfInfo(User user) {
+		return  userDao.updateUserByUserName(user) == 1;
+	}
 }

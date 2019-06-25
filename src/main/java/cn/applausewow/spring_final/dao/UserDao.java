@@ -16,6 +16,6 @@ public interface UserDao {
 	List<User> getAllUsers();
 	User getUserByUserName(@Param("user_name") String username);
 	Integer insertUser(User user);
-
+	Integer updateUserByUserName(User user);
 
 }
