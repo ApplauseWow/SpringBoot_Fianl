@@ -44,18 +44,21 @@ private UserService service;
 //            System.out.println(billTypeCount.getNum());
 //
 //        }
-        User user = new User();
-        user.setName("app");
-        user.setUser_name("app");
-        user.setLocation("上海");
-        user.setJob("架构师");
-        user.setPasswd("123");
-        boolean b = service.modifySelfInfo(user);
-        if (b){
+//        User user = new User();
+//        user.setName("app");
+//        user.setUser_name("app");
+//        user.setLocation("上海");
+//        user.setJob("架构师");
+//        user.setPasswd("123");
+//        boolean b = service.modifySelfInfo(user);
+//        if (b){
+//            System.out.println("ok");
+//        }else {
+//            System.out.println("no");
+//        }
+//    }
+        if (service.deleteUserByUserId(7)) {
             System.out.println("ok");
-        }else {
-            System.out.println("no");
-        }
+        } else System.out.println("NO");
     }
-
 }

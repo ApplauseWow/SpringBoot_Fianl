@@ -37,7 +37,8 @@ public class UserController {
 		if (userService.checkUserInfo(username, password)) {
 			//验证正确，进入首页
 			httpSession.setAttribute("user", userService.showUserByUserName(username));
-			return "index";
+			if (username.equals("admin")) return "admin";
+			else return "index";
 		} else {
 			//验证失败，跳转至登录界面
 			httpSession.setAttribute("msg", "用户名密码错误");
@@ -60,14 +61,14 @@ public class UserController {
 				httpSession.setAttribute("user", user);
 				return "index";
 			}else {
-				httpSession.setAttribute("msg", "注册失败重新注册");
-				return "register";
+				httpSession.setAttribute("msg_register", "注册失败重新注册");
+				return "redirect:/signIn";
 			}
 
 		}else {
 			System.out.println("fail to register!");
-			httpSession.setAttribute("msg", "用户名已存在");
-			return "register";
+			httpSession.setAttribute("msg_register", "用户名已存在");
+			return "redirect:/signIn";
 		}
 
 	}
@@ -85,11 +86,12 @@ public class UserController {
 		return userService.modifySelfInfo(user);
 	}
 
-	@RequestMapping("/showUserByUserName")
-	public Map<String, User> showUserByUserName(@RequestParam(value = "") String username){
-		Map<String, User> map = new HashMap<>();
-		map.put("user", userService.showUserByUserName(username));
-		return map;
+	@ResponseBody
+	@RequestMapping("/deleteUser")
+	public Boolean deleteUserByUserName(@RequestParam(value = "user_id")Integer user_id){
+		return userService.deleteUserByUserId(user_id);
 	}
+
+
 
 }

@@ -4,6 +4,8 @@ import cn.applausewow.spring_final.bean.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class CommonController {
 
@@ -15,6 +17,5 @@ public class CommonController {
     @RequestMapping("/signIn")
     public String register(){return "register";}
 
-    @RequestMapping("/admin")
-    public String admin(){return "manager";}
+
 }

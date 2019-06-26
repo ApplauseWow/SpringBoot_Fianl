@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService {
 	public Boolean modifySelfInfo(User user) {
 		return  userDao.updateUserByUserName(user) == 1;
 	}
+
+	@Override
+	public Boolean deleteUserByUserId(Integer user_id) {
+		return userDao.deleteUserByUserId(user_id) == 1;
+	}
 }

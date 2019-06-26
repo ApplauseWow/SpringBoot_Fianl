@@ -13,4 +13,5 @@ public interface UserService {
 	public Boolean existUser(String username);
 	public Boolean Register(User user);
 	public Boolean modifySelfInfo(User user);
+	Boolean deleteUserByUserId(Integer user_id);
 }
